@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
     spec.name                     = 'SampleBridge'
-    spec.version                  = '1.0'
+    spec.version                  = '1.0-SNAPSHOT'
     spec.homepage                 = 'Link to the Shared Module homepage'
     spec.source                   = { :http=> ''}
     spec.authors                  = ''

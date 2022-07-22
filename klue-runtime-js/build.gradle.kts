@@ -1,8 +1,7 @@
 plugins {
     kotlin("multiplatform")
+    id("com.vanniktech.maven.publish")
 }
-
-version = "1.0"
 
 kotlin {
     js(IR) {

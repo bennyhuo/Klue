@@ -2,12 +2,14 @@ plugins {
     id("com.android.library")
     kotlin("multiplatform")
     kotlin("plugin.serialization")
+    id("com.vanniktech.maven.publish")
 }
 
-version = "1.0"
-
 kotlin {
-    android()
+    android {
+        publishLibraryVariants("release")
+    }
+
     js(IR) {
         binaries.library()
         nodejs()

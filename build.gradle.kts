@@ -4,6 +4,7 @@ plugins {
     kotlin("multiplatform") version "1.7.0" apply false
     kotlin("plugin.serialization") version "1.7.0" apply false
     id("com.google.devtools.ksp") version "1.7.0-1.0.6" apply false
+    id("com.vanniktech.maven.publish") version "0.20.0" apply false
 }
 
 allprojects {
@@ -19,4 +20,9 @@ allprojects {
             }
         }
     }
+
+
+    group = property("GROUP").toString()
+    version =  property("VERSION_NAME").toString()
+
 }

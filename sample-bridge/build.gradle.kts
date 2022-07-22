@@ -13,8 +13,6 @@ plugins {
     id("com.google.devtools.ksp")
 }
 
-version = "1.0"
-
 kotlin {
     android()
     iosX64()
