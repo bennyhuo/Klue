@@ -1,22 +1,22 @@
-buildscript {
-    repositories {
-        gradlePluginPortal()
-        google()
-        mavenCentral()
-    }
-    dependencies {
-        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.6.10")
-        classpath("com.android.tools.build:gradle:7.2.0")
-    }
+plugins {
+    id("com.android.application") version "7.0.2" apply false
+    id("com.android.library") version "7.0.2" apply false
+    kotlin("multiplatform") version "1.7.0" apply false
+    kotlin("plugin.serialization") version "1.7.0" apply false
+    id("com.google.devtools.ksp") version "1.7.0-1.0.6" apply false
 }
 
 allprojects {
     repositories {
-        google()
-        mavenCentral()
-    }
-}
+        // for react native libraries
+        maven(url = "$rootDir/reactNativeApp/node_modules/react-native/android")
+        // for android jsc
+        maven(url = "$rootDir/reactNativeApp/node_modules/jsc-android/dist")
 
-tasks.register("clean", Delete::class) {
-    delete(rootProject.buildDir)
+        maven("https://mirrors.tencent.com/nexus/repository/maven-public/") {
+            content {
+                excludeGroup("com.facebook.react")
+            }
+        }
+    }
 }
