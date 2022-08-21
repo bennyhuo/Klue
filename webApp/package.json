@@ -1,0 +1,11 @@
+{
+  "name": "KlueSampleWebApp",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "static-server": "^2.2.1"
+  }
+}

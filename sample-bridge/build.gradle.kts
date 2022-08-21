@@ -36,11 +36,18 @@ kotlin {
 
         println("-----> ${compilations.getByName("main").npmProject.dir}")
 
-        tasks.register<Copy>("copyNpmOutput") {
+        tasks.register<Copy>("copyReactNativeOutput") {
             group = "browser"
             dependsOn("jsDevelopmentExecutableCompileSync")
             from(compilations.getByName("main").npmProject.dir)
             into(File(rootDir, "reactNativeApp/node_modules/SampleBridge"))
+        }
+
+        tasks.register<Copy>("copyWebOutput") {
+            group = "browser"
+            dependsOn("jsDevelopmentExecutableCompileSync")
+            from(File(compilations.getByName("main").npmProject.dir, "kotlin"))
+            into(File(rootDir, "webApp/static"))
         }
     }
 
