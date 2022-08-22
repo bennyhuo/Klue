@@ -1,14 +1,12 @@
 package com.bennyhuo.kotlin.klue.android
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.webkit.WebChromeClient
 import android.webkit.WebView
 import android.webkit.WebViewClient
+import androidx.appcompat.app.AppCompatActivity
 import com.bennyhuo.klue.webview.AndroidWebViewBridge
-import com.bennyhuo.kotlin.klue.sample.UtilsImpl
 import com.bennyhuo.kotlin.klue.android.databinding.ActivityWebviewBinding
-import com.bennyhuo.kotlin.klue.sample.bridge
 
 class WebViewActivity : AppCompatActivity() {
 
@@ -29,7 +27,7 @@ class WebViewActivity : AppCompatActivity() {
             loadUrl(binding.url.text.toString())
         }
 
-        AndroidWebViewBridge(binding.webView).register(UtilsImpl().bridge())
+        AndroidWebViewBridge(binding.webView).registerAllBridges()
 
         binding.reload.setOnClickListener {
             binding.webView.loadUrl(binding.url.text.toString())

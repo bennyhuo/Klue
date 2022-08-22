@@ -9,12 +9,10 @@
 import type {Node} from 'react';
 import React from 'react';
 import {Text, NativeModules} from 'react-native';
-import {Utils} from 'SampleBridge';
+import {Utils, UserApi} from 'SampleBridge';
 
 const onPress = async () => {
     try {
-        console.log(NativeModules)
-        console.log(NativeModules.KlueModule)
          const result = await Utils.platform()
          console.log(`>>>> ${result}`)
 
@@ -26,6 +24,10 @@ const onPress = async () => {
             "Hello World"
         )
         console.log(`>>>> ${result2}`)
+
+        // React Native
+        const users = await UserApi.getAllUsers()
+        console.log(JSON.stringify(users))
     } catch (e) {
         console.error(e)
     }

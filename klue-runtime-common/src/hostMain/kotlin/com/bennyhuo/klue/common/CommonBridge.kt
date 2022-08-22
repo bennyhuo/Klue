@@ -15,12 +15,20 @@ abstract class CommonBridge {
         bridges[bridge.name] = bridge
     }
 
+    operator fun Bridge<*>.unaryPlus() {
+        register(this)
+    }
+
     fun unregister(bridge: Bridge<*>) {
         bridges.remove(bridge.name)
     }
 
     fun unregister(bridgeName: String) {
         bridges.remove(bridgeName)
+    }
+
+    operator fun Bridge<*>.unaryMinus() {
+        unregister(this)
     }
 
     fun call(functionInfo: KlueFunctionInfo): KlueFunctionResult {
