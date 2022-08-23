@@ -35,9 +35,7 @@ class WebViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        IosWebViewBridge(webView: webView).register(
-            bridge: UtilsKt.bridge(UtilsImpl())
-        )
+        IosWebViewBridge(webView: webView).registerAllBridges()
         reloadWebView()
         
         reloadButton.addAction(UIAction { action in

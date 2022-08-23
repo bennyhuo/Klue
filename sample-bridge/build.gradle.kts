@@ -60,6 +60,7 @@ kotlin {
             baseName = "SampleBridge"
             export(project(":klue-runtime-webview"))
             export(project(":klue-runtime-reactnative"))
+            export(project(":klue-runtime-common"))
         }
         name = "SampleBridge"
     }
@@ -71,6 +72,7 @@ kotlin {
                 implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.3")
                 api(project(":klue-runtime-webview"))
                 api(project(":klue-runtime-reactnative"))
+                api(project(":klue-runtime-common"))
             }
         }
         val commonTest by getting {

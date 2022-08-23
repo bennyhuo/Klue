@@ -47,7 +47,7 @@ class ReactNativeViewController: UIViewController, RCTBridgeDelegate {
         reactNativeView.frame = reactNativeViewContainer.bounds
         reactNativeView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         let klueModule = reactNativeView.bridge.module(forName: "KlueModule") as! KlueModule
-        klueModule.getBridge().register(bridge: UtilsKt.bridge(UtilsImpl()))
+        klueModule.getBridge().registerAllBridges()
         
         reactNativeViewContainer.addSubview(reactNativeView)
     }

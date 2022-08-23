@@ -10,8 +10,10 @@
 		058557BB273AAA24004C7B11 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 058557BA273AAA24004C7B11 /* Assets.xcassets */; };
 		058557D9273AAEEB004C7B11 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 058557D8273AAEEB004C7B11 /* Preview Assets.xcassets */; };
 		59493A77DC7EFCA51009903F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 594930DEAC091C1A16767A13 /* AppDelegate.swift */; };
+		59493D1ACBECA6B8DDB37A86 /* .xcode.env.local in Resources */ = {isa = PBXBuildFile; fileRef = 59493CB30D849A78C31BBF3A /* .xcode.env.local */; };
 		59493DDD32065470E5277BA5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 594934EA8A4F36C7D50534FF /* ViewController.swift */; };
 		59493E3DD9171931F99A6641 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 59493F536E7CC9ECC99D627E /* .gitignore */; };
+		59493F512C91C0018304E29B /* Bridges.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5949319DD0FDB4A10B058945 /* Bridges.swift */; };
 		59493FC47EC2DEAB704AF0B9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5949343203BE8D8E72A0E837 /* SceneDelegate.swift */; };
 		ABAC86EB10EDB43A4F84BDDA /* Pods_iosApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CFF8783443F49FCD73DA3A9 /* Pods_iosApp.framework */; };
 		B2D2D8012883B0E8001225AE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B2D2D7FD2883B0E8001225AE /* Main.storyboard */; };
@@ -26,8 +28,10 @@
 		058557D8273AAEEB004C7B11 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		17F1156F06BBAFCCEDD58142 /* Pods-iosApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iosApp.debug.xcconfig"; path = "Target Support Files/Pods-iosApp/Pods-iosApp.debug.xcconfig"; sourceTree = "<group>"; };
 		594930DEAC091C1A16767A13 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		5949319DD0FDB4A10B058945 /* Bridges.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bridges.swift; sourceTree = "<group>"; };
 		5949343203BE8D8E72A0E837 /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		594934EA8A4F36C7D50534FF /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		59493CB30D849A78C31BBF3A /* .xcode.env.local */ = {isa = PBXFileReference; lastKnownFileType = file.env; path = .xcode.env.local; sourceTree = "<group>"; };
 		59493F536E7CC9ECC99D627E /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = file.gitignore; path = .gitignore; sourceTree = "<group>"; };
 		5CFF8783443F49FCD73DA3A9 /* Pods_iosApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iosApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7555FF7B242A565900829871 /* iosApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iosApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -77,6 +81,7 @@
 				220DDCA8A9E5C0B4EBB210D6 /* Pods */,
 				DB4D46EFE8CF827C93D0F20B /* Frameworks */,
 				59493F536E7CC9ECC99D627E /* .gitignore */,
+				59493CB30D849A78C31BBF3A /* .xcode.env.local */,
 			);
 			sourceTree = "<group>";
 		};
@@ -102,6 +107,7 @@
 				058557D7273AAEEB004C7B11 /* Preview Content */,
 				B2D2D80328840F31001225AE /* WebViewController.swift */,
 				B2D2D80528840F6D001225AE /* ReactNativeViewController.swift */,
+				5949319DD0FDB4A10B058945 /* Bridges.swift */,
 			);
 			path = iosApp;
 			sourceTree = "<group>";
@@ -180,6 +186,7 @@
 				59493E3DD9171931F99A6641 /* .gitignore in Resources */,
 				B2D2D8022883B0E8001225AE /* LaunchScreen.storyboard in Resources */,
 				B2D2D8012883B0E8001225AE /* Main.storyboard in Resources */,
+				59493D1ACBECA6B8DDB37A86 /* .xcode.env.local in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -238,6 +245,7 @@
 				59493DDD32065470E5277BA5 /* ViewController.swift in Sources */,
 				59493A77DC7EFCA51009903F /* AppDelegate.swift in Sources */,
 				B2D2D80628840F6D001225AE /* ReactNativeViewController.swift in Sources */,
+				59493F512C91C0018304E29B /* Bridges.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
