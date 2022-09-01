@@ -7,40 +7,44 @@
  */
 
 import type {Node} from 'react';
-import React from 'react';
-import {Text, NativeModules} from 'react-native';
-import {Utils, UserApi} from 'SampleBridge';
-
-const onPress = async () => {
-    try {
-         const result = await Utils.platform()
-         console.log(`>>>> ${result}`)
-
-        const result2 = await Utils.testParameters(
-            0,
-            1234567890,
-            1.1,
-            2.2,
-            "Hello World"
-        )
-        console.log(`>>>> ${result2}`)
-
-        // React Native
-        const users = await UserApi.getAllUsers()
-        console.log(JSON.stringify(users))
-    } catch (e) {
-        console.error(e)
-    }
-}
+import React, {useEffect, useState} from 'react';
+import {Text} from 'react-native';
+import {UserApi, Utils} from 'SampleBridge';
 
 const App: () => Node = () => {
-  return (
-    <Text style={style} onPress={onPress}>Hello World</Text>
-  );
+    const [text, setText] = useState(true)
+
+    const onScreenLoad = async () => {
+        try {
+            const result = await Utils.platform()
+            const result2 = await Utils.testParameters(
+                0,
+                1234567890,
+                1.1,
+                2.2,
+                "Hello World"
+            )
+
+            // React Native
+            const users = await UserApi.getAllUsers()
+            setText(`Platform: ${result}\n${result2}\n${users}`)
+        } catch (e) {
+            console.error(e)
+        }
+    }
+
+    useEffect(() => {
+        // write your code here, it's like componentWillMount
+        onScreenLoad();
+    }, [])
+
+    return (
+        <Text style={style}>{text}</Text>
+    );
 };
 
 const style = {
-    fontSize: 50,
+    fontSize: 20,
     color: 'blue'
 }
 

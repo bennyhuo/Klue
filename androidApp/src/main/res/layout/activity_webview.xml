@@ -16,6 +16,7 @@
         android:id="@+id/reload"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:text="Reload"
         android:layout_alignParentBottom="true" />
 
 
