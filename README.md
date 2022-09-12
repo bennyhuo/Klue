@@ -10,6 +10,35 @@ call native methods from JavaScript in mobile Apps.
 
 ## Usage
 
+Create a bridge project according to **sample-bridge**, add dependencies to your project:
+
+```kts
+// runtime
+kotlin {
+    ...
+    sourceSets {
+        val commonMain by getting {
+            dependencies {
+                api(project("com.bennyhuo.kotlin:klue-runtime-common:1.0-Beta"))
+                // for WebView
+                api(project("com.bennyhuo.kotlin:klue-runtime-webview:1.0-Beta"))
+                // for React Native project
+                api(project("com.bennyhuo.kotlin:klue-runtime-reactnative:1.0-Beta"))
+            }
+        }
+        ...
+    }
+}
+
+// compile time
+dependencies {
+    "kspJvm"("com.bennyhuo.kotlin:klue-compiler:1.0-Beta") 
+    "kspIosX64"("com.bennyhuo.kotlin:klue-compiler:1.0-Beta") 
+    // see https://kotlinlang.org/docs/ksp-multiplatform.html
+}
+
+```
+
 You will never need to define a method name and its parameter types in a document, then tell the WebView/React
 Native/Android/iOS developers how to invoke or implement this method.
 
