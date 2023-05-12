@@ -286,7 +286,7 @@ PODS:
     - React-jsi (= 0.69.1)
     - React-logger (= 0.69.1)
     - React-perflogger (= 0.69.1)
-  - SampleBridge (1.0-SNAPSHOT)
+  - SampleBridge (1.0-Beta)
   - Yoga (1.14.0)
 
 DEPENDENCIES:
@@ -431,9 +431,9 @@ SPEC CHECKSUMS:
   React-RCTVibration: e8b7dd6635cc95689b5db643b5a3848f1e05b30b
   React-runtimeexecutor: 27f468c5576eaf05ffb7a907528e44c75a3fcbae
   ReactCommon: e30ec17dfb1d4c4f3419eac254350d6abca6d5a2
-  SampleBridge: 1d57c807826e2a5cd495340681883749db6c493a
+  SampleBridge: 90739ee768e65a9bfe243fe4c5d796a64eff7c3e
   Yoga: 7ab6e3ee4ce47d7b789d1cb520163833e515f452
 
 PODFILE CHECKSUM: e0f10b7fddf2bd3f8e099c18476e660f4e072285
 
-COCOAPODS: 1.11.2
+COCOAPODS: 1.11.3

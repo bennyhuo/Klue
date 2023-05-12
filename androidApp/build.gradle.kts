@@ -1,6 +1,6 @@
 plugins {
+    kotlin("multiplatform")
     id("com.android.application")
-    kotlin("android")
 }
 
 repositories {
@@ -12,6 +12,24 @@ repositories {
     maven("https://mirrors.tencent.com/nexus/repository/maven-public/") {
         content {
             excludeGroup("com.facebook.react")
+            excludeModule("org.webkit", "android-jsc")
+        }
+    }
+}
+
+kotlin {
+    android()
+    sourceSets {
+        val androidMain by getting {
+            dependencies {
+                implementation(project(":sample-bridge"))
+                implementation("com.google.android.material:material:1.4.0")
+                implementation("androidx.appcompat:appcompat:1.3.1")
+                implementation("androidx.constraintlayout:constraintlayout:2.1.0")
+
+                implementation("com.facebook.react:react-native:0.69.1")
+                implementation("org.webkit:android-jsc:+")
+            }
         }
     }
 }
@@ -34,14 +52,4 @@ android {
     buildFeatures {
         viewBinding = true
     }
-}
-
-dependencies {
-    implementation(project(":sample-bridge"))
-    implementation("com.google.android.material:material:1.4.0")
-    implementation("androidx.appcompat:appcompat:1.3.1")
-    implementation("androidx.constraintlayout:constraintlayout:2.1.0")
-
-    implementation("com.facebook.react:react-native:0.69.1")
-    implementation("org.webkit:android-jsc:+")
 }
