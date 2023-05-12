@@ -148,7 +148,12 @@ kotlin.targets.forEach { target ->
 
 
 dependencies {
-    ksp(project(":klue-compiler"))
+    add("kspCommonMainMetadata", project(":klue-compiler"))
+    add("kspAndroid", project(":klue-compiler"))
+    add("kspIosArm64", project(":klue-compiler"))
+    add("kspIosSimulatorArm64", project(":klue-compiler"))
+    add("kspIosX64", project(":klue-compiler"))
+    add("kspJs", project(":klue-compiler"))
 }
 
 tasks.register<Copy>("copyJsOutput") {
