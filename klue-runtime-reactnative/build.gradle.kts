@@ -38,7 +38,7 @@ kotlin {
         val androidMain by getting {
             dependencies {
                 implementation(kotlin("reflect"))
-                api("com.facebook.react:react-native:0.69.1")
+                api("com.facebook.react:react-native:0.69.9")
             }
         }
 
