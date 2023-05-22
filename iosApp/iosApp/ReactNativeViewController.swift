@@ -27,6 +27,8 @@ class ReactNativeViewController: UIViewController, RCTBridgeDelegate {
     }
     
     private func reload() {
+        RCTRegisterModule(SampleBridgeKlueModule2.self)
+
         for subView in reactNativeViewContainer.subviews {
             subView.removeFromSuperview()
         }
