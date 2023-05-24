@@ -9,43 +9,41 @@
 import type {Node} from 'react';
 import React, {useEffect, useState} from 'react';
 import {Text} from 'react-native';
-import {UserApi, Utils} from 'SampleBridge';
+import SampleBridge from 'SampleBridge';
 
 const App: () => Node = () => {
-    const [text, setText] = useState(true)
+  const [text, setText] = useState(true);
 
-    const onScreenLoad = async () => {
-        try {
-            const result = await Utils.platform()
-            const result2 = await Utils.testParameters(
-                0,
-                1234567890,
-                1.1,
-                2.2,
-                "Hello World"
-            )
+  const onScreenLoad = async () => {
+    try {
+      const result = await SampleBridge.Utils.platform();
+      const result2 = await SampleBridge.Utils.testParameters(
+        0,
+        1234567890,
+        1.1,
+        2.2,
+        'Hello World',
+      );
 
-            // React Native
-            const users = await UserApi.getAllUsers()
-            setText(`Platform: ${result}\n${result2}\n${users}`)
-        } catch (e) {
-            console.error(e)
-        }
+      // React Native
+      const users = await SampleBridge.UserApi.getAllUsers();
+      setText(`Platform: ${result}\n${result2}\n${users}`);
+    } catch (e) {
+      console.error(e);
     }
+  };
 
-    useEffect(() => {
-        // write your code here, it's like componentWillMount
-        onScreenLoad();
-    }, [])
+  useEffect(() => {
+    // write your code here, it's like componentWillMount
+    onScreenLoad();
+  }, []);
 
-    return (
-        <Text style={style}>{text}</Text>
-    );
+  return <Text style={style}>{text}</Text>;
 };
 
 const style = {
-    fontSize: 20,
-    color: 'blue'
-}
+  fontSize: 20,
+  color: 'blue',
+};
 
 export default App;

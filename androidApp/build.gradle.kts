@@ -27,7 +27,7 @@ kotlin {
                 implementation("androidx.appcompat:appcompat:1.3.1")
                 implementation("androidx.constraintlayout:constraintlayout:2.1.0")
 
-                implementation("com.facebook.react:react-native:0.69.1")
+                implementation("com.facebook.react:react-native:0.71.8")
                 implementation("org.webkit:android-jsc:+")
             }
         }

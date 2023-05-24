@@ -27,10 +27,12 @@ class ReactNativeViewController: UIViewController, RCTBridgeDelegate {
     }
     
     private func reload() {
+        KlueModule.register()
+
         for subView in reactNativeViewContainer.subviews {
             subView.removeFromSuperview()
         }
-        
+                
         guard let jsCodeLocation = URL(string: "\(urlText.text ?? "")/index.bundle?platform=ios") else {
             print("invalid url")
             return
