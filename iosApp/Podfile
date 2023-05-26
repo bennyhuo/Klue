@@ -5,9 +5,9 @@ target 'iosApp' do
   use_frameworks!
   platform :ios, '14.1'
   pod 'SampleBridge', :path => '../sample-bridge'
-  # pod 'KlueRN', :path => '../klue-runtime-reactnative'
-  # pod 'KlueWV', :path => '../klue-runtime-webview'
-  # pod 'KlueCommon', :path => '../klue-runtime-common'
+#   pod 'KlueRuntimeReactNative', :path => '../klue-runtime-reactnative'
+#   pod 'KlueRuntimeWebView', :path => '../klue-runtime-webview'
+#   pod 'KlueRuntimeCommon', :path => '../klue-runtime-common'
 
   #region react native
 

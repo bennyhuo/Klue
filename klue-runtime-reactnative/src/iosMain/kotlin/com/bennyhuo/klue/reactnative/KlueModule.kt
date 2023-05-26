@@ -1,15 +1,10 @@
 package com.bennyhuo.klue.reactnative
 
-import com.bennyhuo.klue.reactnative.ReactNativeBridge
 import kotlinx.cinterop.ExportObjCClass
 import platform.Foundation.NSError
 
 @ExportObjCClass("KlueModule")
 class KlueModule {
-
-    private val bridge = ReactNativeBridge()
-
-    fun getBridge() = bridge
 
     fun callNative(
         value: String,
@@ -18,12 +13,11 @@ class KlueModule {
     ) {
         println("callNative!!! ${value}")
 
-        val result = bridge.call(value)
+        val result = ReactNativeBridge.call(value)
         if (result.code == 0) {
             resolve(result.data)
         } else {
             reject(result.code.toString(), result.data, null)
         }
     }
-
 }

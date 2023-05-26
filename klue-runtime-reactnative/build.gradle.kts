@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
+
 plugins {
     id("com.android.library")
     kotlin("multiplatform")
@@ -10,9 +12,24 @@ kotlin {
         publishLibraryVariants("release")
     }
 
-    iosX64()
-    iosArm64()
-    iosSimulatorArm64()
+    val setUpIos: KotlinNativeTarget.() -> Unit = {
+        compilations.getByName("main") {
+            val ReactNative by cinterops.creating {
+                defFile("src/nativeInterop/cinterop/ReactNative.def")
+                includeDirs("src/nativeInterop/cinterop")
+            }
+        }
+    }
+
+    iosX64() {
+        setUpIos()
+    }
+    iosArm64() {
+        setUpIos()
+    }
+    iosSimulatorArm64() {
+        setUpIos()
+    }
 
     js(IR) {
         binaries.library()
@@ -38,7 +55,7 @@ kotlin {
         val androidMain by getting {
             dependencies {
                 implementation(kotlin("reflect"))
-                api("com.facebook.react:react-native:0.71.8")
+                api("com.facebook.react:react-android:0.71.8")
             }
         }
 

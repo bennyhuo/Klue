@@ -9,7 +9,7 @@ import kotlinx.serialization.json.Json
 /**
  * Created by benny at 2022/7/19 23:19.
  */
-class ReactNativeBridge: CommonBridge() {
+object ReactNativeBridge: CommonBridge() {
 
     fun call(value: String): KlueFunctionResult {
         val functionInfo = try {

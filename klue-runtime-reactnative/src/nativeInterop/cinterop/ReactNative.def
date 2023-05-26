@@ -1,0 +1,3 @@
+headers = ReactNative.h
+package = com.facebook.react.native
+language = Objective-C

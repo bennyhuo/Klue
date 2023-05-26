@@ -9,19 +9,15 @@ plugins {
 
 allprojects {
     repositories {
-        // for react native libraries
-        maven(url = "$rootDir/reactNativeApp/node_modules/react-native/android")
         // for android jsc
         maven(url = "$rootDir/reactNativeApp/node_modules/jsc-android/dist")
 
         maven("https://mirrors.tencent.com/nexus/repository/maven-public/") {
             content {
-                excludeGroup("com.facebook.react")
                 excludeModule("org.webkit", "android-jsc")
             }
         }
     }
-
 
     group = property("GROUP").toString()
     version =  property("VERSION_NAME").toString()

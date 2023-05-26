@@ -34,8 +34,6 @@ class RnSampleActivity : Activity() {
     private lateinit var reactRootView: ReactRootView
     private lateinit var reactInstanceManager: ReactInstanceManager
 
-    private val bridge = ReactNativeBridge()
-
     private fun checkOverlayPermission() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (!Settings.canDrawOverlays(this)) {
@@ -63,12 +61,12 @@ class RnSampleActivity : Activity() {
             //.setBundleAssetName("index.bundle")
             .setJSMainModulePath("index.js")
             .addPackage(MainReactPackage())
-            .addPackage(KluePackage(bridge))
+            .addPackage(KluePackage())
             .setUseDeveloperSupport(BuildConfig.DEBUG)
             .setInitialLifecycleState(LifecycleState.RESUMED)
             .build()
 
-        bridge.registerAllBridges()
+        ReactNativeBridge.registerAllBridges()
 
         reactRootView.startReactApplication(reactInstanceManager, "KlueSample")
         binding.rnContainer.addView(reactRootView, -1, -1)

@@ -7,11 +7,9 @@ import com.facebook.react.bridge.ReactApplicationContext
 import com.facebook.react.uimanager.ReactShadowNode
 import com.facebook.react.uimanager.ViewManager
 
-class KluePackage(
-    private val bridge: ReactNativeBridge
-) : ReactPackage {
+class KluePackage : ReactPackage {
     override fun createNativeModules(reactApplicationContext: ReactApplicationContext): List<NativeModule> {
-        return listOf(KlueModule(reactApplicationContext, bridge))
+        return listOf(KlueModule(reactApplicationContext))
     }
 
     override fun createViewManagers(reactApplicationContext: ReactApplicationContext)
