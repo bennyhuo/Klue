@@ -28,7 +28,6 @@ extension KlueModule: RCTBridgeModule {
         if !isRegistered {
             isRegistered = true
             RCTRegisterModule(KlueModule.self)
-            ReactNativeBridge.shared.registerAllBridges()
         }
     }
 }

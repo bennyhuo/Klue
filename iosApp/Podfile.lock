@@ -351,6 +351,9 @@ PODS:
     - React-logger (= 0.71.8)
     - React-perflogger (= 0.71.8)
   - SampleBridge (1.0-Beta)
+  - SampleBridgeWrapper (0.1.0):
+    - React-Core
+    - SampleBridge
   - Yoga (1.14.0)
 
 DEPENDENCIES:
@@ -390,6 +393,7 @@ DEPENDENCIES:
   - React-runtimeexecutor (from `../reactNativeApp/node_modules/react-native/ReactCommon/runtimeexecutor`)
   - ReactCommon/turbomodule/core (from `../reactNativeApp/node_modules/react-native/ReactCommon`)
   - SampleBridge (from `../sample-bridge`)
+  - SampleBridgeWrapper (from `../sample-bridge`)
   - Yoga (from `../reactNativeApp/node_modules/react-native/ReactCommon/yoga`)
 
 SPEC REPOS:
@@ -466,6 +470,8 @@ EXTERNAL SOURCES:
     :path: "../reactNativeApp/node_modules/react-native/ReactCommon"
   SampleBridge:
     :path: "../sample-bridge"
+  SampleBridgeWrapper:
+    :path: "../sample-bridge"
   Yoga:
     :path: "../reactNativeApp/node_modules/react-native/ReactCommon/yoga"
 
@@ -506,8 +512,9 @@ SPEC CHECKSUMS:
   React-runtimeexecutor: 7c51ae9d4b3e9608a2366e39ccaa606aa551b9ed
   ReactCommon: 9957c7530467adbdf4a4a1476d636bd00b2e4dd8
   SampleBridge: 90739ee768e65a9bfe243fe4c5d796a64eff7c3e
+  SampleBridgeWrapper: 10f91b3eed399e1e97047fe3ab79151661b48a39
   Yoga: 065f0b74dba4832d6e328238de46eb72c5de9556
 
-PODFILE CHECKSUM: eaf9db27bc290ae84f8dc328410d440381ca76d3
+PODFILE CHECKSUM: 543cb0ea34688daeca53c2c2e3676f68141bc411
 
 COCOAPODS: 1.12.1

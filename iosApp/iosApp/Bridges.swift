@@ -5,11 +5,13 @@
 
 import Foundation
 import SampleBridge
+import SampleBridgeWrapper
 
 extension CommonBridge {
     func registerAllBridges() {
         register(bridge: UtilsKt.bridge(UtilsImpl()))
         register(bridge: UserApiKt.bridge(UserApiImpl()))
+        register(bridge: UserApiImpl().bridge())
     }
 }
 

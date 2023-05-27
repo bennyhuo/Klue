@@ -3,7 +3,10 @@ package com.bennyhuo.kotlin.klue.compiler
 import com.bennyhuo.klue.annotations.KlueBridge
 import com.google.devtools.ksp.getAnnotationsByType
 import com.google.devtools.ksp.getDeclaredFunctions
+import com.google.devtools.ksp.processing.Dependencies
 import com.google.devtools.ksp.processing.JsPlatformInfo
+import com.google.devtools.ksp.processing.JvmPlatformInfo
+import com.google.devtools.ksp.processing.NativePlatformInfo
 import com.google.devtools.ksp.processing.Resolver
 import com.google.devtools.ksp.processing.SymbolProcessorEnvironment
 import com.google.devtools.ksp.symbol.KSClassDeclaration
@@ -19,6 +22,9 @@ import com.squareup.kotlinpoet.ksp.addOriginatingKSFile
 import com.squareup.kotlinpoet.ksp.toClassName
 import com.squareup.kotlinpoet.ksp.toTypeName
 import com.squareup.kotlinpoet.ksp.writeTo
+import io.outfoxx.swiftpoet.DeclaredTypeName
+import io.outfoxx.swiftpoet.ExtensionSpec
+import io.outfoxx.swiftpoet.FunctionSpec
 
 /**
  * Created by benny.
@@ -38,11 +44,13 @@ class BridgeClass(
         if (environment.platforms.size > 1) {
             logger.warn("Meta compiling with ${environment.platforms.joinToString { it.platformName }}")
         } else {
-            if (environment.platforms.first() is JsPlatformInfo) {
-                generateJsBridge(resolver)
-            } else {
-                // Android / iOS
-                generateNativeBridge(resolver)
+            when(environment.platforms.first()) {
+                is JsPlatformInfo -> generateJsBridge(resolver)
+                is JvmPlatformInfo -> generateNativeBridge(resolver)
+                is NativePlatformInfo -> {
+                    generateNativeBridge(resolver)
+                    generateSwiftExtensions(resolver)
+                }
             }
         }
     }
@@ -88,6 +96,29 @@ class BridgeClass(
                 .addAnnotation(SERIALIZABLE)
                 .build()
         }
+    }
+
+    private fun generateSwiftExtensions(resolver: Resolver) {
+        logger.warn("Generate swift extensions: $name")
+        val dependencies = this.bridgeType.containingFile?.let {
+            Dependencies(false, it)
+        } ?: Dependencies(false)
+
+        environment.codeGenerator.createNewFile(dependencies, "", name, "swift").writer().use {
+            val bridgeType = DeclaredTypeName.typeName(".$name")
+
+            io.outfoxx.swiftpoet.FileSpec.builder(name).addExtension(
+                ExtensionSpec.builder(bridgeType)
+                    .addFunction(
+                        FunctionSpec.builder("bridge")
+                            .returns(DeclaredTypeName.typeName(".${name}Bridge"))
+                            .addStatement("${name}Bridge(target: self)")
+                            .build()
+                    ).build()
+
+            ).build().writeTo(it)
+        }
+
     }
 
     private fun generateNativeBridge(resolver: Resolver) {

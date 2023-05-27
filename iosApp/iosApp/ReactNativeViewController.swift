@@ -9,6 +9,7 @@
 import UIKit
 import React
 import SampleBridge
+import SampleBridgeWrapper
 
 class ReactNativeViewController: UIViewController, RCTBridgeDelegate {
 
@@ -28,6 +29,7 @@ class ReactNativeViewController: UIViewController, RCTBridgeDelegate {
     
     private func reload() {
         KlueModule.register()
+        ReactNativeBridge.shared.registerAllBridges()
 
         for subView in reactNativeViewContainer.subviews {
             subView.removeFromSuperview()
