@@ -10,6 +10,7 @@ plugins {
     kotlin("native.cocoapods")
     kotlin("plugin.serialization")
     id("com.google.devtools.ksp")
+    id("com.bennyhuo.klue")
 }
 
 kotlin {

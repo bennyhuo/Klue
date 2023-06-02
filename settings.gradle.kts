@@ -1,7 +1,7 @@
 pluginManagement {
     repositories {
         maven("https://mirrors.tencent.com/nexus/repository/maven-public/")
-        gradlePluginPortal()
+        maven("https://mirrors.tencent.com/nexus/repository/gradle-plugins")
     }
 }
 
@@ -14,3 +14,5 @@ include(":klue-runtime-reactnative")
 include(":klue-compiler")
 include(":klue-annotations")
 include(":sample-bridge")
+
+includeBuild("klue-gradle-plugin")
