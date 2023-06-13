@@ -1,9 +1,9 @@
 package com.bennyhuo.kotlin.klue.gradle
 
-abstract class KlueExtension {
+open class KlueExtension {
 
-    var wrapperSourceDir: List<String>? = null
+    var wrapperSourceDir: String? = null
 
-    var wrapperPodName: String? = null
+    var wrapperFrameworkName: String? = null
 
 }

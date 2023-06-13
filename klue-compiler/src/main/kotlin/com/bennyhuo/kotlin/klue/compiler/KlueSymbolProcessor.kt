@@ -15,6 +15,10 @@ class KlueSymbolProcessor(private val environment: SymbolProcessorEnvironment) :
     SymbolProcessor {
     private val logger = environment.logger
 
+    init {
+        logger.warn("Ksp options: ${environment.options}")
+    }
+
     override fun process(resolver: Resolver): List<KSAnnotated> {
         try {
             logger.warn("SymbolProcessor, ${KotlinVersion.CURRENT}")

@@ -1,4 +1,5 @@
 @file:Suppress("INVISIBLE_MEMBER", "INVISIBLE_REFERENCE")
+
 package com.bennyhuo.kotlin.klue.gradle
 
 import org.gradle.api.Action
@@ -10,14 +11,28 @@ import org.jetbrains.kotlin.gradle.plugin.cocoapods.CocoapodsExtension
 import org.jetbrains.kotlin.gradle.plugin.cocoapods.KotlinCocoapodsPlugin
 import org.jetbrains.kotlin.gradle.plugin.cocoapods.supportedTargets
 import org.jetbrains.kotlin.gradle.plugin.mpp.Framework
+import java.io.File
 
 class KlueGradlePlugin : Plugin<Project> {
     override fun apply(target: Project) {
+
+        target.extensions.create("klue", KlueExtension::class.java)
+
         target.withAllPlugins("com.google.devtools.ksp", "org.jetbrains.kotlin.native.cocoapods") {
             target.afterEvaluate {
-                val cocoapodsExtension = target.extensions.getByType(KotlinMultiplatformExtension::class.java).cocoapods
+                val klueExtension = target.extensions.getByType(KlueExtension::class.java)
+                val baseName = getFrameworkBaseName(target)
+                    ?: throw IllegalArgumentException("Base name of framework should not be null.")
 
-                println("-- baseName: ${getFrameworkBaseName(target)}")
+                target.ksp.apply {
+                    arg("frameworkBaseName", baseName)
+                    arg("wrapperFrameworkName", klueExtension.wrapperFrameworkName ?: "${baseName}Wrapper")
+                    arg(
+                        "wrapperSourceDir",
+                        klueExtension.wrapperSourceDir ?: File(target.buildDir, "generated").absolutePath
+                    )
+                    arg("projectDir", target.projectDir.absolutePath)
+                }
             }
         }
     }
