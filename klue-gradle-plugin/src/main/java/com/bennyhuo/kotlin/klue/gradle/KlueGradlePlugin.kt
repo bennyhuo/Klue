@@ -2,12 +2,9 @@
 
 package com.bennyhuo.kotlin.klue.gradle
 
-import org.gradle.api.Action
 import org.gradle.api.Plugin
 import org.gradle.api.Project
-import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 import org.jetbrains.kotlin.gradle.dsl.multiplatformExtension
-import org.jetbrains.kotlin.gradle.plugin.cocoapods.CocoapodsExtension
 import org.jetbrains.kotlin.gradle.plugin.cocoapods.KotlinCocoapodsPlugin
 import org.jetbrains.kotlin.gradle.plugin.cocoapods.supportedTargets
 import org.jetbrains.kotlin.gradle.plugin.mpp.Framework
@@ -19,19 +16,30 @@ class KlueGradlePlugin : Plugin<Project> {
         target.extensions.create("klue", KlueExtension::class.java)
 
         target.withAllPlugins("com.google.devtools.ksp", "org.jetbrains.kotlin.native.cocoapods") {
+
+            val task = target.tasks.register("podGenWrapper", PodGenWrapperTask::class.java)
+            target.tasks.getByName("podInstall").dependsOn(task)
+
             target.afterEvaluate {
                 val klueExtension = target.extensions.getByType(KlueExtension::class.java)
                 val baseName = getFrameworkBaseName(target)
                     ?: throw IllegalArgumentException("Base name of framework should not be null.")
 
+                val wrapperSourceDir = klueExtension.wrapperSourceDir ?: File(target.buildDir, "generated").absolutePath
+                val wrapperFrameworkName = klueExtension.wrapperFrameworkName ?: "${baseName}Wrapper"
+
                 target.ksp.apply {
-                    arg("frameworkBaseName", baseName)
-                    arg("wrapperFrameworkName", klueExtension.wrapperFrameworkName ?: "${baseName}Wrapper")
-                    arg(
-                        "wrapperSourceDir",
-                        klueExtension.wrapperSourceDir ?: File(target.buildDir, "generated").absolutePath
-                    )
+                    arg("frameworkName", baseName)
+                    arg("wrapperFrameworkName", wrapperFrameworkName)
+                    arg("wrapperSourceDir", wrapperSourceDir)
                     arg("projectDir", target.projectDir.absolutePath)
+                }
+
+                task.configure {
+                    it.frameworkName.set(baseName)
+                    it.wrapperSourceDir.set(File(wrapperSourceDir))
+                    it.wrapperFrameworkName.set(wrapperFrameworkName)
+                    it.projectDir.set(target.projectDir)
                 }
             }
         }
@@ -44,6 +52,5 @@ class KlueGradlePlugin : Plugin<Project> {
                 .withType(Framework::class.java).firstOrNull()?.baseName
         }
     }
-
 
 }

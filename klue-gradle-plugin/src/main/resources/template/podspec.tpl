@@ -1,5 +1,5 @@
 #
-# Be sure to run `pod lib lint SampleBridge.podspec' to ensure this is a
+# Be sure to run `pod lib lint {{wrapperFrameworkName}}.podspec' to ensure this is a
 # valid spec before submitting.
 #
 # Any lines starting with a # are optional, but their use is encouraged
@@ -7,9 +7,9 @@
 #
 
 Pod::Spec.new do |s|
-  s.name             = 'SampleBridge'
+  s.name             = '{{wrapperFrameworkName}}'
   s.version          = '0.1.0'
-  s.summary          = 'A short description of SampleBridge.'
+  s.summary          = 'A short description of {{wrapperFrameworkName}}.'
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
@@ -24,8 +24,8 @@ TODO: Add long description of the pod here.
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.ios.deployment_target = '10.0'
 
-  s.source_files = '/Users/benny/WorkSpace/external/Klue/sample-bridge/wrapper/**/*.swift'
+  s.source_files = '{{wrapperSourceDir}}'
 
-  s.dependency 'SampleBridge'
+  s.dependency '{{frameworkName}}'
   s.dependency 'React-Core'
 end

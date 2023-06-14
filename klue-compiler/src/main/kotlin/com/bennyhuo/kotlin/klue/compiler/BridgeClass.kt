@@ -3,7 +3,6 @@ package com.bennyhuo.kotlin.klue.compiler
 import com.bennyhuo.klue.annotations.KlueBridge
 import com.google.devtools.ksp.getAnnotationsByType
 import com.google.devtools.ksp.getDeclaredFunctions
-import com.google.devtools.ksp.processing.Dependencies
 import com.google.devtools.ksp.processing.JsPlatformInfo
 import com.google.devtools.ksp.processing.JvmPlatformInfo
 import com.google.devtools.ksp.processing.NativePlatformInfo
@@ -25,12 +24,15 @@ import com.squareup.kotlinpoet.ksp.writeTo
 import io.outfoxx.swiftpoet.DeclaredTypeName
 import io.outfoxx.swiftpoet.ExtensionSpec
 import io.outfoxx.swiftpoet.FunctionSpec
+import java.io.File
 
 /**
  * Created by benny.
  */
 class BridgeClass(
-    private val environment: SymbolProcessorEnvironment, val bridgeType: KSClassDeclaration
+    private val environment: SymbolProcessorEnvironment,
+    private val bridgeType: KSClassDeclaration,
+    private val options: Options
 ) {
 
     val logger = environment.logger
@@ -100,12 +102,9 @@ class BridgeClass(
 
     private fun generateSwiftExtensions(resolver: Resolver) {
         logger.warn("Generate swift extensions: $name")
-        val dependencies = this.bridgeType.containingFile?.let {
-            Dependencies(false, it)
-        } ?: Dependencies(false)
 
-        environment.codeGenerator.createNewFile(dependencies, "", name, "swift").writer().use {
-            val bridgeType = DeclaredTypeName.typeName(".$name")
+        File(options.wrapperSourceDir, "$name.swift").writer().use {
+            val bridgeType = DeclaredTypeName.typeName("${options.frameworkName}.$name")
 
             io.outfoxx.swiftpoet.FileSpec.builder(name).addExtension(
                 ExtensionSpec.builder(bridgeType)
@@ -118,7 +117,6 @@ class BridgeClass(
 
             ).build().writeTo(it)
         }
-
     }
 
     private fun generateNativeBridge(resolver: Resolver) {

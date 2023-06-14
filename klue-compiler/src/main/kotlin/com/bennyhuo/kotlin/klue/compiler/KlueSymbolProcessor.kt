@@ -15,9 +15,7 @@ class KlueSymbolProcessor(private val environment: SymbolProcessorEnvironment) :
     SymbolProcessor {
     private val logger = environment.logger
 
-    init {
-        logger.warn("Ksp options: ${environment.options}")
-    }
+    private val options = Options(environment.options)
 
     override fun process(resolver: Resolver): List<KSAnnotated> {
         try {
@@ -31,7 +29,7 @@ class KlueSymbolProcessor(private val environment: SymbolProcessorEnvironment) :
                     }
                 }.toSet()
                 .forEach {
-                    BridgeClass(environment, it).generate(resolver)
+                    BridgeClass(environment, it, options).generate(resolver)
                 }
 
         } catch (e: Exception) {

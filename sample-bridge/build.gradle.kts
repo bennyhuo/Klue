@@ -13,6 +13,11 @@ plugins {
     id("com.bennyhuo.klue")
 }
 
+klue {
+    wrapperSourceDir = file("wrapper").path
+    wrapperFrameworkName = "SampleBridgeWrapper"
+}
+
 kotlin {
     android()
     iosX64()
