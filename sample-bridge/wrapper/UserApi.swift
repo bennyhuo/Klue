@@ -2,7 +2,7 @@ import SampleBridge
 
 extension UserApi {
 
-  func bridge() -> UserApiBridge {
+  public func bridge() -> UserApiBridge {
     UserApiBridge(target: self)
   }
 

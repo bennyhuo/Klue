@@ -2,7 +2,7 @@ import SampleBridge
 
 extension Utils {
 
-  func bridge() -> UtilsBridge {
+  public func bridge() -> UtilsBridge {
     UtilsBridge(target: self)
   }
 

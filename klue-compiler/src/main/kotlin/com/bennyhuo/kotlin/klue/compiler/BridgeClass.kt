@@ -24,6 +24,7 @@ import com.squareup.kotlinpoet.ksp.writeTo
 import io.outfoxx.swiftpoet.DeclaredTypeName
 import io.outfoxx.swiftpoet.ExtensionSpec
 import io.outfoxx.swiftpoet.FunctionSpec
+import io.outfoxx.swiftpoet.Modifier
 import java.io.File
 
 /**
@@ -110,6 +111,7 @@ class BridgeClass(
                 ExtensionSpec.builder(bridgeType)
                     .addFunction(
                         FunctionSpec.builder("bridge")
+                            .addModifiers(Modifier.PUBLIC)
                             .returns(DeclaredTypeName.typeName(".${name}Bridge"))
                             .addStatement("${name}Bridge(target: self)")
                             .build()
