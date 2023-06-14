@@ -39,8 +39,8 @@ abstract class PodGenWrapperTask : DefaultTask() {
 
         podSpecText = podSpecText
             .replace("{{frameworkName}}", frameworkName.get())
-            .replace("{{wrapperFrameworkName}}", frameworkName.get())
-            .replace("{{wrapperSourceDir}}", "${wrapperSourceDir.asFile.get().path}/**/*.swift")
+            .replace("{{wrapperFrameworkName}}", wrapperFrameworkName.get())
+            .replace("{{wrapperSourceDir}}", "${wrapperSourceDir.asFile.get().relativeTo(projectDir.asFile.get()).path}/**/*.swift")
         File(projectDir.asFile.get(), "${wrapperFrameworkName.get()}.podspec").writeText(podSpecText)
     }
 

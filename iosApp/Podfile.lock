@@ -512,7 +512,7 @@ SPEC CHECKSUMS:
   React-runtimeexecutor: 7c51ae9d4b3e9608a2366e39ccaa606aa551b9ed
   ReactCommon: 9957c7530467adbdf4a4a1476d636bd00b2e4dd8
   SampleBridge: 90739ee768e65a9bfe243fe4c5d796a64eff7c3e
-  SampleBridgeWrapper: 10f91b3eed399e1e97047fe3ab79151661b48a39
+  SampleBridgeWrapper: c7ee2c0dae95cf4ca11ed0661cfb8278474eb33d
   Yoga: 065f0b74dba4832d6e328238de46eb72c5de9556
 
 PODFILE CHECKSUM: 543cb0ea34688daeca53c2c2e3676f68141bc411
