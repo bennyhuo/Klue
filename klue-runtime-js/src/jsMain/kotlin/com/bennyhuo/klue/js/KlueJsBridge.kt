@@ -6,6 +6,6 @@ import kotlin.js.Promise
 /**
  * Created by benny.
  */
-interface Klue {
+interface KlueJsBridge {
     fun <T> callNative(className: String, functionName: String, args: String): Promise<T>
 }

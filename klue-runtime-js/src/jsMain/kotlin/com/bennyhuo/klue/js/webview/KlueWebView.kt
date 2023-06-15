@@ -3,7 +3,7 @@ package com.bennyhuo.klue.js.webview
 import com.bennyhuo.klue.common.exception.BridgeInvokeException
 import com.bennyhuo.klue.common.invoke.KlueFunctionInfo
 import com.bennyhuo.klue.common.utils.KLUE_BRIDGE_NAME
-import com.bennyhuo.klue.js.Klue
+import com.bennyhuo.klue.js.KlueJsBridge
 import kotlinx.browser.window
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
@@ -11,7 +11,7 @@ import org.w3c.dom.get
 import kotlin.js.Date
 import kotlin.js.Promise
 
-object KlueWebView : Klue {
+object KlueWebView : KlueJsBridge {
 
     private var callbackId = 0
 

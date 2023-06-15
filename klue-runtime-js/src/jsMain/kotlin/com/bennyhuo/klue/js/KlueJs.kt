@@ -5,11 +5,11 @@ import com.bennyhuo.klue.js.utils.isReactNative
 import com.bennyhuo.klue.js.webview.KlueWebView
 import kotlin.js.Promise
 
-object KlueJs {
+object KlueJs: KlueJsBridge {
 
-    private val target: Klue = if (isReactNative()) KlueReactNative else KlueWebView
+    private val target: KlueJsBridge = if (isReactNative()) KlueReactNative else KlueWebView
 
-    fun <T> callNative(className: String, functionName: String, args: String): Promise<T> {
+    override fun <T> callNative(className: String, functionName: String, args: String): Promise<T> {
         return target.callNative(className, functionName, args)
     }
 

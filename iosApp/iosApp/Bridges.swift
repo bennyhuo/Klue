@@ -9,8 +9,7 @@ import SampleBridgeWrapper
 
 extension CommonBridge {
     func registerAllBridges() {
-        register(bridge: UtilsKt.bridge(UtilsImpl()))
-        register(bridge: UserApiKt.bridge(UserApiImpl()))
+        register(bridge: UtilsImpl().bridge())
         register(bridge: UserApiImpl().bridge())
     }
 }

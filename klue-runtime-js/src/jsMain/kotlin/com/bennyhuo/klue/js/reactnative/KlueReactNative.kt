@@ -1,6 +1,7 @@
 package com.bennyhuo.klue.js.reactnative
 
-import com.bennyhuo.klue.js.Klue
+import _reactNative
+import com.bennyhuo.klue.js.KlueJsBridge
 import com.bennyhuo.klue.common.exception.BridgeInvokeException
 import com.bennyhuo.klue.common.invoke.KlueFunctionInfo
 import kotlinx.browser.window
@@ -8,9 +9,17 @@ import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import kotlin.js.Promise
 
-object KlueReactNative: Klue {
+object KlueReactNative: KlueJsBridge {
+
     override fun <T> callNative(className: String, functionName: String, args: String): Promise<T> {
         return Promise { resolve, reject ->
+            if (_reactNative == null) {
+                reject(BridgeInvokeException("$className.$functionName", -2, "ReactNative is not initialized."))
+                return@Promise
+            }
+
+            val klueModule = _reactNative.NativeModules.KlueModule
+
             val functionInfo = KlueFunctionInfo(
                 className,
                 functionName,
@@ -26,9 +35,9 @@ object KlueReactNative: Klue {
             }, 5000)
 
             val promise = if (isAndroid()) {
-                NativeModules.KlueModule.callNative(value)
+                klueModule.callNative(value)
             } else {
-                NativeModules.KlueModule.callNativeValue(value)
+                klueModule.callNativeValue(value)
             } as Promise<T>
 
             promise.then(resolve)
@@ -36,4 +45,7 @@ object KlueReactNative: Klue {
                 .finally { window.clearTimeout(timeoutHandle) }
         }
     }
+
+    private fun isAndroid() = _reactNative.Platform.OS == "android"
+
 }
