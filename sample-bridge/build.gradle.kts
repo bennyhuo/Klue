@@ -24,36 +24,40 @@ kotlin {
     iosArm64()
     iosSimulatorArm64()
 
-    js(IR) {
+    js("reactNative", IR) {
         moduleName = "SampleBridge"
         binaries.executable()
-        browser {
-            commonWebpackConfig {
-                output = KotlinWebpackOutput(
-                    library = "SampleBridge",
-                    libraryTarget = KotlinWebpackOutput.Target.UMD,
-                    globalObject = "this"
-                )
-                outputFileName = "SampleBridge.js"
-            }
-        }
         nodejs()
-        generateTypeScriptDefinitions()
-
-        println("-----> ${compilations.getByName("main").npmProject.dir}")
 
         tasks.register<Copy>("copyReactNativeOutput") {
+
             group = "browser"
-            dependsOn("jsDevelopmentExecutableCompileSync")
+            dependsOn("reactNativeDevelopmentExecutableCompileSync")
             dependsOn("jsPackageJson")
 
             from(compilations.getByName("main").npmProject.dir)
             into(File(rootDir, "reactNativeApp/node_modules/SampleBridge"))
         }
+    }
+    js("webView", IR) {
+        moduleName = "SampleBridge"
+        binaries.executable()
+        browser {
+//            commonWebpackConfig {
+//                output = KotlinWebpackOutput(
+//                    library = "SampleBridge",
+//                    libraryTarget = KotlinWebpackOutput.Target.UMD,
+//                    globalObject = "this"
+//                )
+//                outputFileName = "SampleBridge.js"
+//            }
+        }
+        generateTypeScriptDefinitions()
 
+        println("-----> ${compilations.getByName("main").npmProject.dir}")
         tasks.register<Copy>("copyWebOutput") {
             group = "browser"
-            dependsOn("jsDevelopmentExecutableCompileSync")
+            dependsOn("webViewDevelopmentExecutableCompileSync")
             from(File(compilations.getByName("main").npmProject.dir, "kotlin"))
             into(File(rootDir, "webApp/static"))
         }
@@ -94,8 +98,19 @@ kotlin {
             }
         }
 
-        val jsMain by getting
-        jsMain.kotlin.srcDir("build/generated/ksp/js/jsMain/kotlin")
+        val webViewMain by getting {
+            dependencies {
+                api(project(":klue-runtime-js"))
+            }
+        }
+        webViewMain.kotlin.srcDir("build/generated/ksp/webViewMain/kotlin")
+
+        val reactNativeMain by getting {
+            dependencies {
+                api(project(":klue-runtime-js"))
+            }
+        }
+        reactNativeMain.kotlin.srcDir("build/generated/ksp/reactNativeMain/kotlin")
 
         val androidTest by getting
         val iosX64Main by getting
@@ -161,7 +176,8 @@ dependencies {
     add("kspIosArm64", project(":klue-compiler"))
     add("kspIosSimulatorArm64", project(":klue-compiler"))
     add("kspIosX64", project(":klue-compiler"))
-    add("kspJs", project(":klue-compiler"))
+    add("kspReactNative", project(":klue-compiler"))
+    add("kspWebView", project(":klue-compiler"))
 }
 
 tasks.register<Copy>("copyJsOutput") {

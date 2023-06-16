@@ -34,6 +34,7 @@ kotlin {
 android {
     compileSdk = 32
     namespace = "com.bennyhuo.kotlin.klue.android"
+    sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
     defaultConfig {
         applicationId = "com.bennyhuo.kotlin.klue.android"
         minSdk = 21

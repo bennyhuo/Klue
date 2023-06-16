@@ -91,11 +91,11 @@ kotlin {
             androidTest.dependsOn(this)
         }
 
-        val jsMain by getting {
-            dependencies {
-                api(project(":klue-runtime-js"))
-            }
-        }
+//        val jsMain by getting {
+//            dependencies {
+//                api(project(":klue-runtime-js"))
+//            }
+//        }
     }
 }
 
