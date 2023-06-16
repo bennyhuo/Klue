@@ -9,12 +9,9 @@
 import type {Node} from 'react';
 import React, {useEffect, useState} from 'react';
 import {Text} from 'react-native';
-import * as ReactNative from 'react-native';
 import SampleBridge from 'SampleBridge';
 
 const App: () => Node = () => {
-  SampleBridge.init(ReactNative);
-
   const [text, setText] = useState(true);
 
   const onScreenLoad = async () => {

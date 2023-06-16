@@ -28,12 +28,13 @@ kotlin {
         moduleName = "SampleBridge"
         binaries.executable()
         nodejs()
+        generateTypeScriptDefinitions()
 
         tasks.register<Copy>("copyReactNativeOutput") {
 
             group = "browser"
             dependsOn("reactNativeDevelopmentExecutableCompileSync")
-            dependsOn("jsPackageJson")
+            dependsOn("reactNativePackageJson")
 
             from(compilations.getByName("main").npmProject.dir)
             into(File(rootDir, "reactNativeApp/node_modules/SampleBridge"))
