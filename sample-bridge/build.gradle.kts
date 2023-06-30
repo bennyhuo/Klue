@@ -181,13 +181,6 @@ dependencies {
     add("kspWebView", project(":klue-compiler"))
 }
 
-tasks.register<Copy>("copyJsOutput") {
-    group = "browser"
-    val jsBrowserDistribution = tasks.named("jsBrowserDistribution")
-    from(jsBrowserDistribution)
-    into(File(rootDir, "web"))
-}
-
 rootProject.extensions.configure<org.jetbrains.kotlin.gradle.targets.js.nodejs.NodeJsRootExtension> {
     versions.webpackCli.version = "4.10.0"
 }
